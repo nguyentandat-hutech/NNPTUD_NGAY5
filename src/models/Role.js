@@ -9,10 +9,7 @@ const roleSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-    },
-    isActive: {
-      type: Boolean,
-      default: true,
+      default: '',
     },
   },
   {

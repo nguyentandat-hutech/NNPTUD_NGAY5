@@ -58,7 +58,7 @@ const updateUser = async (req, res) => {
   }
 };
 
-// @desc    Soft delete user (chuyển isActive về false)
+// @desc    Soft delete user (chuyển status về false)
 // @route   DELETE /api/users/:id
 const deleteUser = async (req, res) => {
   try {
@@ -66,7 +66,7 @@ const deleteUser = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-    user.isActive = false;
+    user.status = false;
     await user.save();
     res.status(200).json({ message: 'User disabled successfully', user });
   } catch (error) {
@@ -74,7 +74,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
-// @desc    Enable user (truyền email + username, nếu đúng thì chuyển isActive = true)
+// @desc    Enable user (truyền email + username, nếu đúng thì chuyển status = true)
 // @route   POST /api/users/enable
 const enableUser = async (req, res) => {
   try {
@@ -83,7 +83,7 @@ const enableUser = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found or info incorrect' });
     }
-    user.isActive = true;
+    user.status = true;
     await user.save();
     res.status(200).json({ message: 'User enabled successfully', user });
   } catch (error) {
@@ -91,7 +91,7 @@ const enableUser = async (req, res) => {
   }
 };
 
-// @desc    Disable user (truyền email + username, nếu đúng thì chuyển isActive = false)
+// @desc    Disable user (truyền email + username, nếu đúng thì chuyển status = false)
 // @route   POST /api/users/disable
 const disableUser = async (req, res) => {
   try {
@@ -100,7 +100,7 @@ const disableUser = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found or info incorrect' });
     }
-    user.isActive = false;
+    user.status = false;
     await user.save();
     res.status(200).json({ message: 'User disabled successfully', user });
   } catch (error) {

@@ -7,22 +7,35 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    password: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,
       unique: true,
     },
-    password: {
+    fullName: {
       type: String,
-      required: true,
+      default: '',
+    },
+    avatarUrl: {
+      type: String,
+      default: 'https://i.sstatic.net/l60Hf.png',
+    },
+    status: {
+      type: Boolean,
+      default: false,
     },
     role: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Role',
     },
-    isActive: {
-      type: Boolean,
-      default: true,
+    loginCount: {
+      type: Number,
+      default: 0,
+      min: 0,
     },
   },
   {
